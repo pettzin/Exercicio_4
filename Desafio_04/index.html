@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo da Área de um Retângulo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            width: 90%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        textarea {
+            width: 90%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: none;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!--Crie um arquivo HTML que utilizando JavaScript leia a base e a altura de um retângulo (por meio de um formulário), calcule sua área e apresente os resultados em um campo de texto ou textarea.-->
+    <div class="container">
+        <h2>Cálculo da Área do Retângulo</h2>
+        <label for="base">Base (cm):</label>
+        <input type="number" id="base" placeholder="Digite o valor da base" min="0" step="0.1">
+        
+        <label for="altura">Altura (cm):</label>
+        <input type="number" id="altura" placeholder="Digite o valor da altura" min="0" step="0.1">
+        
+        <button type="button" onclick="calcularArea()">Calcular Área</button>
+        
+        <label for="resultado">Resultado (cm²):</label>
+        <textarea id="res" readonly placeholder="O resultado aparecerá aqui"></textarea>
+    </div>
+
+    <script>
+        function calcularArea() {
+            let base = parseFloat(document.getElementById("base").value);
+            let altura = parseFloat(document.getElementById("altura").value);
+            let res = document.getElementById("res");
+
+            if (isNaN(base) || base <= 0 || isNaN(altura) || altura <= 0) {
+                res.value = "Informe valores válidos para base e altura.";
+                return;
+            }
+
+            let area = base * altura;
+            res.value = `A área do retângulo é ${area.toFixed(2)} cm².`;
+        }
+    </script>
+
+</body>
+</html>

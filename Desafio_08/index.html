@@ -1,0 +1,56 @@
+<<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo do Imposto de Renda</title>
+</head>
+<body>
+    <!--Crie um arquivo HTML que contenha um formulário conforme exemplo abaixo:
+    Neste mesmo arquivo crie uma função JavaScript que calcule o imposto de renda a partir do salário informado, respeitando a faixa salarial conforme apresentado na tabela. Depois, coloque o resultado do cálculo na caixa de texto correspondente ao IR.-->
+    <h1>Cálculo do Imposto de Renda</h1>
+
+    <form>
+        <label for="registro">Registro:</label>
+        <input type="text" id="registro"><br><br>
+
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome"><br><br>
+
+        <label for="salario">Salário:</label>
+        <input type="number" id="salario"><br><br>
+
+        <button type="button" onclick="calcularIR()">Calcular IR</button><br><br>
+
+        <label for="imposto">Imposto de Renda:</label>
+        <input type="text" id="imposto"><br><br>
+    </form>
+
+    <script>
+        function calcularIR() {
+            let salario = parseFloat(document.getElementById("salario").value);
+            let imposto = 0;
+            let resultado = document.getElementById("imposto");
+
+            if (isNaN(salario) || salario <= 0) {
+                resultado.value = "Salário inválido.";
+                return;
+            }
+
+            if (salario <= 1434) {
+                imposto = 0;
+            } else if (salario <= 2150) {
+                imposto = salario * 0.075;
+            } else if (salario <= 2866) {
+                imposto = salario * 0.15;
+            } else if (salario <= 3582) {
+                imposto = salario * 0.225;
+            } else {
+                imposto = salario * 0.275;
+            }
+
+            resultado.value = `R$ ${imposto.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>

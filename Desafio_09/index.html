@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+    <!--Crie um arquivo HTML que contenha um formulário conforme
+    exemplo abaixo: Neste mesmo arquivo crie uma função JavaScript que calcule a operação associada pelo clique no botão correspondente. Depois, coloque o resultado do calculo na caixa de texto correspondente ao Resultado.-->
+    <h1>Calculadora</h1>
+
+    <form>
+        <label for="numero1">Primeiro número:</label><br>
+        <input type="number" id="numero1"><br><br>
+
+        <label for="numero2">Segundo número:</label><br>
+        <input type="number" id="numero2"><br><br>
+
+        <button type="button" onclick="calcular('+')">+</button>
+        <button type="button" onclick="calcular('-')">-</button>
+        <button type="button" onclick="calcular('*')">*</button>
+        <button type="button" onclick="calcular('/')">/</button><br><br>
+
+        <label for="resultado">Resultado:</label>
+        <input type="text" id="resultado" disabled><br><br>
+    </form>
+
+    <script>
+        function calcular(operacao) {
+            let num1 = parseFloat(document.getElementById("numero1").value);
+            let num2 = parseFloat(document.getElementById("numero2").value);
+            let resultado = document.getElementById("resultado");
+
+            let resultadoCalculo;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                resultado.value = "Informe números válidos.";
+                return;
+            }
+
+            switch (operacao) {
+                case '+':
+                    resultadoCalculo = num1 + num2;
+                    break;
+                case '-':
+                    resultadoCalculo = num1 - num2;
+                    break;
+                case '*':
+                    resultadoCalculo = num1 * num2;
+                    break;
+                case '/':
+                    if (num2 === 0) {
+                        resultado.value = "Divisão por zero!";
+                        return;
+                    }
+                    resultadoCalculo = num1 / num2;
+                    break;
+                default:
+                    resultado.value = "Operação inválida.";
+                    return;
+            }
+
+            resultado.value = resultadoCalculo;
+        }
+    </script>
+</body>
+</html>
+

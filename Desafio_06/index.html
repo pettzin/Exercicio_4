@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Preço</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            width: 90%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        input#res {
+            background-color: #f9f9f9;
+            color: black;
+            font-weight: bold;
+        }
+        .info {
+            text-align: left;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!--Elabore um script que leia o valor (preço) de um produto e a condição de pagamento conforme tabela abaixo. Exiba ao final do script, o valor real do produto e o valor a ser pago (conforme tabela), leia os valores por meio de um formulário e mostre as mensagens em campos de texto do form.-->
+    <div class="container">
+        <h2>Preço do Produto</h2>
+        
+        <div class="info">
+            <strong>Condições de pagamento:</strong>
+            <ul>
+                <li><strong>Código 1:</strong> À vista - 10% de desconto</li>
+                <li><strong>Código 2:</strong> Em 2x - 5% de desconto</li>
+                <li><strong>Código 3:</strong> Em 3x ou mais - 10% de acréscimo</li>
+            </ul>
+        </div>
+
+        <label for="preco">Valor do Produto: <input type="number" step="0.01" id="preco" placeholder="Digite o preço"></label>
+        <label for="codigo">Condição de Pagamento: 
+            <input type="number" id="codigo" min="1" max="3" placeholder="Digite 1, 2 ou 3">
+        </label>
+        <button type="button" onclick="calcularPreco()">Calcular Preço</button>
+        <label for="res">Resultado:</label>
+        <input type="text" id="res" disabled>
+    </div>
+
+    <script>
+        function calcularPreco() {
+            let preco = parseFloat(document.getElementById("preco").value);
+            let codigo = parseInt(document.getElementById("codigo").value);
+            let resultado = document.getElementById("res");
+
+            if (isNaN(preco) || isNaN(codigo) || codigo < 1 || codigo > 3) {
+                resultado.value = "Informe valores válidos.";
+                return;
+            }
+
+            let valorFinal;
+
+            switch (codigo) {
+                case 1: 
+                    valorFinal = preco * 0.90; 
+                    break;
+                case 2: 
+                    valorFinal = preco * 0.95;
+                    break;
+                case 3: 
+                    valorFinal = preco * 1.10; 
+                    break;
+                default:
+                    resultado.value = "Condição inválida.";
+                    return;
+            }
+
+            resultado.value = `Valor a ser pago: R$ ${valorFinal.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>

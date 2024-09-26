@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soma de Números Inteiros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            width: 90%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Função que recebe um número inteiro e positivo N como parâmetro e retorna a soma dos
+    números inteiros existentes entre o número 1 e N (o número N também deve entrar na soma).
+    Leia os valores por meio de um campo de texto e mostre o resultado em outro campo de texto. -->
+
+<div class="container">
+    <h2>Soma de Números Inteiros</h2>
+    <label for="numero">Digite um número inteiro positivo (N):</label>
+    <input type="number" id="numero" min="1">
+    <button onclick="calcularSoma()">Calcular Soma</button>
+    
+    <div class="result" id="resultado"></div>
+</div>
+
+<script>
+    function calcularSoma() {
+        let N = parseInt(document.getElementById("numero").value);
+        let resultado = document.getElementById("resultado");
+
+        
+        if (isNaN(N) || N < 1) {
+            resultado.innerHTML = "Por favor, insira um número inteiro positivo.";
+            return;
+        }
+
+        let soma = 0;
+
+        
+        for (let i = 1; i <= N; i++) {
+            soma += i;
+        }
+
+        
+        resultado.innerHTML = `A soma dos números de 1 até ${N} é: ${soma}`;
+    }
+</script>
+
+</body>
+</html>
